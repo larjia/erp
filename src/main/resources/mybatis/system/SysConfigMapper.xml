@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.winkelmann.swl.dc.project.system.mapper.SysConfigMapper">
+<mapper namespace="com.industri.erp.project.system.mapper.SysConfigMapper">
 	<resultMap type="SysConfig" id="SysConfigResult">
 		<id		property="configId"			column="config_id"		/>
 		<result property="configName"		column="config_name"	/>

@@ -10,7 +10,7 @@ dc:
   demoEnabled: true
   # 文件路径 示例 (windows配置D:/ruoyi/uploadPath linux配置/home/ruoyi/uploadPath)
   # profile: D:/projects/uploadPath
-  profile: C:/datacenter/files
+  profile: C:/industri/erp/files
   # profile: C:/datacenter/uploadPath
   # 获取ip地址开关
   addressEnabled: false
@@ -71,7 +71,7 @@ token:
 # MyBatis配置
 mybatis:
   # 搜索指定包别名
-  typeAliasesPackage: com.winkelmann.swl.dc.project.**.domain
+  typeAliasesPackage: com.industri.erp.project.**.domain
   # 配置mapper的扫描,找到所有的mapper.xml映射文件
   mapperLocations: classpath*:mybatis/**/*Mapper.xml
   # 加载全局的配置文件
