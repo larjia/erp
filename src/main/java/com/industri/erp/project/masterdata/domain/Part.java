@@ -23,6 +23,12 @@ public class Part extends BaseEntity
 	private String projName;
 	// 状态
 	private String status;
+	// 规格
+	private String spec;
+	// 产地
+	private String place;
+	// 品牌
+	private String brand;
 	
 	public Part()
 	{
@@ -87,4 +93,35 @@ public class Part extends BaseEntity
 	{
 		this.status = status;
 	}
+
+	public String getSpec()
+	{
+		return spec;
+	}
+
+	public void setSpec(String spec)
+	{
+		this.spec = spec;
+	}
+
+	public String getPlace()
+	{
+		return place;
+	}
+
+	public void setPlace(String place)
+	{
+		this.place = place;
+	}
+
+	public String getBrand()
+	{
+		return brand;
+	}
+
+	public void setBrand(String brand)
+	{
+		this.brand = brand;
+	}
+	
 }
