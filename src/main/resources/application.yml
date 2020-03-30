@@ -14,6 +14,8 @@ dc:
   # profile: C:/datacenter/uploadPath
   # 获取ip地址开关
   addressEnabled: false
+  # 登录是否需要验证码
+  showCaptcha: false
 
 # 开发环境配置
 server:

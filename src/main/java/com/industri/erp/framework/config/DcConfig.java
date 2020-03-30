@@ -24,6 +24,8 @@ public class DcConfig
 	private static String profile;
 	// 获取地址开关
 	private static boolean addressEnabled;
+	// 登录是否需要验证码
+	private static boolean showCaptcha;
 	
 	public String getName()
 	{
@@ -85,6 +87,16 @@ public class DcConfig
 		DcConfig.addressEnabled = addressEnabled;
 	}
 	
+	public static boolean isShowCaptcha()
+	{
+		return showCaptcha;
+	}
+
+	public void setShowCaptcha(boolean showCaptcha)
+	{
+		DcConfig.showCaptcha = showCaptcha;
+	}
+
 	/**
 	 * 获取头像上传路径
 	 */
