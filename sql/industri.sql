@@ -986,3 +986,29 @@ insert into prod_op_reject_reason values (143, 109, '线束支架摆块不过', 
 insert into prod_op_reject_reason values (144, 109, 'EV座孔距不过', 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
 insert into prod_op_reject_reason values (145, 109, '检具不过', 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
 insert into prod_op_reject_reason values (146, 109, '防护板不过', 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+
+-- ----------------------------
+-- 25、计量单位表字段
+-- ----------------------------
+drop table if exists md_uom;
+create table md_uom (
+  id          	  bigint(20)      not null auto_increment    comment 'id',
+  number          varchar(25)	  default ''                 comment '编码',
+  name            varchar(60)	  default ''                 comment '名称',
+  create_by       varchar(64)     default ''                 comment '创建者',
+  create_time 	  datetime                                   comment '创建时间',
+  update_by       varchar(64)     default ''                 comment '更新者',
+  update_time     datetime                                   comment '更新时间',
+  primary key (id)
+) engine=innodb auto_increment=200 comment = '计量单位表';
+
+insert into md_uom values (1, 'PCS', '件', 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_uom values (2, 'KG', '千克', 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_uom values (3, 'M2', '平方', 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_uom values (4, 'M3', '立方', 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_uom values (5, 'M', '米', 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_uom values (6, 'T', '吨', 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_uom values (7, 'SET', '套', 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_uom values (8, 'PACK', '包', 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_uom values (9, 'BBL', '桶', 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+

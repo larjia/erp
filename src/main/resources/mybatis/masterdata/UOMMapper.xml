@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.industri.erp.project.masterdata.mapper.UOMMapper">
+
+	<resultMap type="UOM" id="UOMResult">
+		<id		property="id"				column="id"				/>
+		<result property="number"			column="number"			/>
+		<result property="name"				column="name"			/>
+	</resultMap>
+	
+	<sql id="selectUOMVo">
+		select id, number, name from md_uom
+	</sql>
+	
+	<select id="selectUOMList" parameterType="UOM" resultMap="UOMResult">
+		<include refid="selectUOMVo" />
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="number != null and number != ''">
+				and number like concat('%', #{number}, '%')
+			</if>
+			<if test="name != null and name != ''">
+				and name like concat('%', #{name}, '%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectUOMById" parameterType="Long" resultMap="UOMResult">
+		<include refid="selectUOMVo"/>
+		where id = #{id}
+	</select>
+	
+	<select id="selectPartByNumber" parameterType="String" resultMap="UOMResult">
+		<include refid="selectUOMVo"/>
+		where number = #{number}
+	</select>
+	
+	<select id="checkUOMNumberUnique" resultMap="UOMResult">
+		<include refid="selectUOMVo" />
+		where number = #{number}
+	</select>
+	
+	<insert id="insertUOM" parameterType="UOM" useGeneratedKeys="true" keyProperty="id">
+		insert into md_uom (
+			<if test="id != null and id != 0">id,</if>
+			<if test="number != null and number != ''">number,</if>
+			<if test="name != null and name != ''">name,</if>
+			create_time
+		) values (
+			<if test="id != null and id != 0">#{id},</if>
+			<if test="number != null and number != ''">#{number},</if>
+			<if test="name != null and name != ''">#{name},</if>
+			sysdate()
+		)
+	</insert>
+	
+	<update id="updateUOM" parameterType="UOM">
+		update md_uom
+		<set>
+			<if test="id != null and id != 0">id = #{id},</if>
+			<if test="number != null and number != ''">number = #{number},</if>
+			<if test="name != null and name != ''">name = #{desc},</if>
+			update_time = sysdate()
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="deleteUOMById" parameterType="Long">
+		delete from md_uom where id = #{id}
+	</delete>
+	
+	<delete id="deleteUOMByNumber" parameterType="String">
+		delete from md_uom where number = #{number}
+	</delete>
+</mapper>
