@@ -22,4 +22,6 @@ public interface UOMMapper
 	public int deleteUOMById(Long id);
 	// 通过编码删除计量单位
 	public int deleteUOMByNumber(String number);
+	// 通过编码删除计量单位
+	public int deleteUOMByIds(Long[] ids);
 }

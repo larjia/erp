@@ -71,4 +71,10 @@ public class UOMService implements IUOMService
 		return uomMapper.deleteUOMByNumber(number);
 	}
 
+	@Override
+	public int deleteUOMByIds(Long[] ids)
+	{
+		return uomMapper.deleteUOMByIds(ids);
+	}
+
 }

@@ -3,6 +3,7 @@ package com.industri.erp.project.masterdata.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,11 +57,11 @@ public class UOMController extends BaseController
 	
 	@Log(title = "计量单位管理", businessType = BusinessType.INSERT)
 	@PostMapping
-	public AjaxResult add(@PathVariable @RequestBody UOM uom)
+	public AjaxResult add(@Validated @RequestBody UOM uom)
 	{
 		if (UserConstants.NOT_UNIQUE.equals(uomService.checkUOMNumberUnique(uom)))
 		{
-			return AjaxResult.error("新增计量单位'" + uom.getNumber() + "'失败,计量单位已存在.");
+			return AjaxResult.error("新增计量单位'" + uom.getNumber() + "'失败,编码已存在.");
 		}
 		uom.setCreateBy(SecurityUtils.getUserName());
 		return toAjax(uomService.insertUOM(uom));
@@ -68,20 +69,20 @@ public class UOMController extends BaseController
 	
 	@Log(title = "计量单位管理", businessType = BusinessType.UPDATE)
 	@PutMapping
-	public AjaxResult eidt(@PathVariable @RequestBody UOM uom)
+	public AjaxResult eidt(@Validated @RequestBody UOM uom)
 	{
 		if (UserConstants.NOT_UNIQUE.equals(uomService.checkUOMNumberUnique(uom)))
 		{
-			return AjaxResult.error("修改计量单位'" + uom.getNumber() + "'失败,计量单位已存在.");
+			return AjaxResult.error("修改计量单位'" + uom.getNumber() + "'失败,编码已存在.");
 		}
 		uom.setUpdateBy(SecurityUtils.getUserName());
 		return toAjax(uomService.updateUOM(uom));
 	}
 	
 	@Log(title = "计量单位管理", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{id}")
-	public AjaxResult remove(@PathVariable Long id)
+	@DeleteMapping("/{ids}")
+	public AjaxResult remove(@PathVariable Long[] ids)
 	{
-		return toAjax(uomService.deleteUOMById(id));
+		return toAjax(uomService.deleteUOMByIds(ids));
 	}
 }

@@ -61,7 +61,7 @@
 		<set>
 			<if test="id != null and id != 0">id = #{id},</if>
 			<if test="number != null and number != ''">number = #{number},</if>
-			<if test="name != null and name != ''">name = #{desc},</if>
+			<if test="name != null and name != ''">name = #{name},</if>
 			update_time = sysdate()
 		</set>
 		where id = #{id}
@@ -73,5 +73,12 @@
 	
 	<delete id="deleteUOMByNumber" parameterType="String">
 		delete from md_uom where number = #{number}
+	</delete>
+	
+	<delete id="deleteUOMByIds" parameterType="Long">
+		delete from md_uom where id in
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
 	</delete>
 </mapper>
