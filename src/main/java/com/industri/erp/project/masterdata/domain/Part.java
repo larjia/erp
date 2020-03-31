@@ -29,6 +29,8 @@ public class Part extends BaseEntity
 	private String place;
 	// 品牌
 	private String brand;
+	// 产品类别
+	private Long typeId;
 	
 	public Part()
 	{
@@ -122,6 +124,16 @@ public class Part extends BaseEntity
 	public void setBrand(String brand)
 	{
 		this.brand = brand;
+	}
+
+	public Long getTypeId()
+	{
+		return typeId;
+	}
+
+	public void setTypeId(Long typeId)
+	{
+		this.typeId = typeId;
 	}
 	
 }
