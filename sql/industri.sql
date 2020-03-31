@@ -163,7 +163,7 @@ insert into sys_menu values('1', '系统管理', '0', '1', 'system',           n
 insert into sys_menu values('2', '系统监控', '0', '2', 'monitor',          null,   1, 'M', '1', '', 'monitor',  'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '系统监控目录');
 insert into sys_menu values('3', '系统工具', '0', '3', 'tool',             null,   1, 'M', '1', '', 'tool',     'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '系统工具目录');
 -- insert into sys_menu values('4', '若依官网', '0', '4', 'http://ruoyi.vip', null ,  0, 'M', '0', '', 'guide',    'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '若依官网地址');
-insert into sys_menu values('4', '基础资料', '0', '4', 'basedata',         null,   1, 'M', '0', '', 'tool',     'admin', '2020-03-10 11-33-00', 'admin', '2018-03-16 11-33-00', '基础资料目录');
+insert into sys_menu values('4', '基础资料', '0', '4', 'masterdata',         null,   1, 'M', '0', '', 'tool',     'admin', '2020-03-10 11-33-00', 'admin', '2018-03-16 11-33-00', '基础资料目录');
 insert into sys_menu values('5', '库存管理', '0', '5', 'inventory',        null,   1, 'M', '0', '', 'tool',     'admin', '2020-03-10 11-33-00', 'admin', '2018-03-16 11-33-00', '库存管理目录');
 insert into sys_menu values('6', '采购管理', '0', '6', 'purchase',         null,   1, 'M', '0', '', 'tool',     'admin', '2020-03-10 11-33-00', 'admin', '2018-03-16 11-33-00', '采购管理目录');
 insert into sys_menu values('7', '销售管理', '0', '7', 'sales',            null,   1, 'M', '0', '', 'tool',     'admin', '2020-03-10 11-33-00', 'admin', '2018-03-16 11-33-00', '销售管理目录');
@@ -192,12 +192,12 @@ insert into sys_menu values('117',  '报工', '8',      '2', 'report',      'pro
 insert into sys_menu values('118',  '车间', '8',      '3', 'shopfloor',   'production/shopfloor/index',  1, 'M', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '生产车间菜单');
 
 -- 基础资料菜单
-insert into sys_menu values('119',  '计量单位',   '4', '1', 'uom',         'basedata/uom/index',          1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '计量单位菜单');
-insert into sys_menu values('120',  '物料类别',   '4', '2', 'parttype',    'basedata/parttype/index',     1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '物料类别菜单');
-insert into sys_menu values('121',  '物料管理',   '4', '3', 'part',        'basedata/part/index',         1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '物料管理菜单');
-insert into sys_menu values('122',  '客户资料',   '4', '4', 'customer',    'basedata/customer/index',     1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '客户资料菜单');
-insert into sys_menu values('123',  '供应商资料', '4', '5', 'supplier',     'basedata/supplier/index',    1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '供应商资料菜单');
-insert into sys_menu values('124',  '送货员',    '4', '6', 'deliveryman',  'basedata/deliveryman/index', 1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '送货员菜单');
+insert into sys_menu values('119',  '计量单位',   '4', '1', 'uom',         'masterdata/uom/index',          1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '计量单位菜单');
+insert into sys_menu values('120',  '物料类别',   '4', '2', 'parttype',    'masterdata/parttype/index',     1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '物料类别菜单');
+insert into sys_menu values('121',  '物料管理',   '4', '3', 'part',        'masterdata/part/index',         1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '物料管理菜单');
+insert into sys_menu values('122',  '客户资料',   '4', '4', 'customer',    'masterdata/customer/index',     1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '客户资料菜单');
+insert into sys_menu values('123',  '供应商资料', '4', '5', 'supplier',     'masterdata/supplier/index',    1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '供应商资料菜单');
+insert into sys_menu values('124',  '送货员',    '4', '6', 'deliveryman',  'masterdata/deliveryman/index', 1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '送货员菜单');
 
 -- 库存管理菜单
 insert into sys_menu values('125',  '仓库管理', '5', '1', 'warehouse',  'inventory/warehouse/index',     1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '仓库管理菜单');
