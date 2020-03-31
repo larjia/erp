@@ -47,11 +47,13 @@
 			<if test="id != null and id != 0">id,</if>
 			<if test="number != null and number != ''">number,</if>
 			<if test="name != null and name != ''">name,</if>
+			create_by,
 			create_time
 		) values (
 			<if test="id != null and id != 0">#{id},</if>
 			<if test="number != null and number != ''">#{number},</if>
 			<if test="name != null and name != ''">#{name},</if>
+			<if test="createBy != null and createBy != ''">#{createBy},</if>
 			sysdate()
 		)
 	</insert>
@@ -62,6 +64,7 @@
 			<if test="id != null and id != 0">id = #{id},</if>
 			<if test="number != null and number != ''">number = #{number},</if>
 			<if test="name != null and name != ''">name = #{name},</if>
+			<if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
 			update_time = sysdate()
 		</set>
 		where id = #{id}
