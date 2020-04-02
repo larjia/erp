@@ -1012,3 +1012,26 @@ insert into md_uom values (7, 'SET', '套', 'admin', '2020-03-15 23-19-00', 'adm
 insert into md_uom values (8, 'PACK', '包', 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
 insert into md_uom values (9, 'BBL', '桶', 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
 
+-- ----------------------------
+-- 26、产品类型表字段
+-- ----------------------------
+drop table if exists md_part_type;
+create table md_part_type (
+  id          	  bigint(20)      not null auto_increment    comment 'id',
+  number          varchar(25)	  default ''                 comment '编码',
+  name            varchar(60)	  default ''                 comment '名称',
+  parent_id       bigint(20)      default 0                  comment '父类别ID',
+  order_num       int(4)          default 0                  comment '显示顺序',
+  create_by       varchar(64)     default ''                 comment '创建者',
+  create_time 	  datetime                                   comment '创建时间',
+  update_by       varchar(64)     default ''                 comment '更新者',
+  update_time     datetime                                   comment '更新时间',
+  primary key (id)
+) engine=innodb auto_increment=200 comment = '产品类别表';
+
+insert into md_part_type values (1, 'TZS', '桶装水', 0, 1, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_part_type values (2, 'KT', '空桶', 0, 2, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_part_type values (3, 'CJS', '纯净水', 1, 1, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_part_type values (4, 'KQS', '矿泉水', 1, 2, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_part_type values (5, 'SQS', '山泉水', 1, 3, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+

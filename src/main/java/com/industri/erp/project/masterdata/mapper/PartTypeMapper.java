@@ -12,8 +12,12 @@ public interface PartTypeMapper
 	public List<PartType> selectPartTypeList(PartType partType);
 	// 根据Id查询产品分类
 	public PartType selectPartTypeById(Long id);
+	// 是否存在子类型
+	public int hasChildrenById(Long id);
 	// 校验产品分类编码是否唯一
 	public PartType checkPartTypeNumberUnique(@Param("number") String number, @Param("parentId") Long parentId);
+	// 校验产品分类名称是否唯一
+	public PartType checkPartTypeNameUnique(@Param("name") String name, @Param("parentId") Long parentId);
 	// 新增产品分类
 	public int insertPartType(PartType partType);
 	// 修改产品分类

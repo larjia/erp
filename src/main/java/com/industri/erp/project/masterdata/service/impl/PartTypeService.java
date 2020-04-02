@@ -3,6 +3,7 @@ package com.industri.erp.project.masterdata.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.industri.erp.common.constant.UserConstants;
 import com.industri.erp.common.utils.StringUtils;
@@ -10,6 +11,7 @@ import com.industri.erp.project.masterdata.domain.PartType;
 import com.industri.erp.project.masterdata.mapper.PartTypeMapper;
 import com.industri.erp.project.masterdata.service.IPartTypeService;
 
+@Service
 public class PartTypeService implements IPartTypeService
 {
 	@Autowired
@@ -27,6 +29,13 @@ public class PartTypeService implements IPartTypeService
 		return partTypeMapper.selectPartTypeById(id);
 	}
 
+	@Override
+	public boolean hasChildrenById(Long id)
+	{
+		int result = partTypeMapper.hasChildrenById(id);
+		return result > 0 ? true : false;
+	}
+	
 	@Override
 	public String checkPartTypeNumberUnique(PartType partType)
 	{

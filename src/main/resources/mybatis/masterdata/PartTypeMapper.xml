@@ -28,10 +28,10 @@
 			<if test="parentId != null and parentId != 0">
 				AND parent_id = #{parentId}
 			</if>
-			<if test="number != null and number != 0">
+			<if test="number != null and number != ''">
 				AND number like concat('%', #{number}, '%')
 			</if>
-			<if test="name != null and name != 0">
+			<if test="name != null and name != ''">
 				AND name like concat('%', #{name}, '%')
 			</if>
 		</where>
@@ -43,9 +43,19 @@
 		where id = #{id}
 	</select>
 	
-	<select id="checkNumberUnique" resultMap="PartTypeResult">
+	<select id="hasChildrenById" parameterType="Long" resultType="int">
+		select count(1) from md_part_type
+		where parent_id = #{id}
+	</select>
+	
+	<select id="checkPartTypeNumberUnique" resultMap="PartTypeResult">
 		<include refid="selectPartTypeVo" />
 		where number = #{number} and parent_id = #{parentId}
+	</select>
+	
+	<select id="checkPartTypeNameUnique" resultMap="PartTypeResult">
+		<include refid="selectPartTypeVo" />
+		where name = #{name} and parent_id = #{parentId}
 	</select>
 
 	<insert id="insertPartType" parameterType="PartType">

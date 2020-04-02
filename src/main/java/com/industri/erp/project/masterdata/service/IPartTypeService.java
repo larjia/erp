@@ -10,8 +10,12 @@ public interface IPartTypeService
 	public List<PartType> selectPartTypeList(PartType partType);
 	// 根据Id查询产品分类
 	public PartType selectPartTypeById(Long id);
+	// 是否有子类型
+	public boolean hasChildrenById(Long id);
 	// 校验产品分类编码是否唯一
 	public String checkPartTypeNumberUnique(PartType partType);
+	// 校验产品分类名称是否唯一
+//	public String checkPartTypeNameUnique(PartType partType);
 	// 新增产品分类
 	public int insertPartType(PartType partType);
 	// 修改产品分类
