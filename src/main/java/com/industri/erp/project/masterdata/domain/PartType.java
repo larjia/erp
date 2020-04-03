@@ -23,7 +23,7 @@ public class PartType extends BaseEntity
 	// 父级id
 	private Long parentId;
 	// 祖级列表
-//	private String ancestors;
+	private String ancestors;
 	// 排序
 	private String orderNum;
 	// 子类别
@@ -87,6 +87,16 @@ public class PartType extends BaseEntity
 	public void setChildren(List<PartType> children)
 	{
 		this.children = children;
+	}
+
+	public String getAncestors()
+	{
+		return ancestors;
+	}
+
+	public void setAncestors(String ancestors)
+	{
+		this.ancestors = ancestors;
 	}
 	
 }

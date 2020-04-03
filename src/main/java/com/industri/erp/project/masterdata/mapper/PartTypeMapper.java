@@ -12,6 +12,8 @@ public interface PartTypeMapper
 	public List<PartType> selectPartTypeList(PartType partType);
 	// 根据Id查询产品分类
 	public PartType selectPartTypeById(Long id);
+	// 根据Id查询所有子类别
+	public List<PartType> selectChildrenTypeById(Long id);
 	// 是否存在子类型
 	public int hasChildrenById(Long id);
 	// 校验产品分类编码是否唯一
@@ -22,6 +24,8 @@ public interface PartTypeMapper
 	public int insertPartType(PartType partType);
 	// 修改产品分类
 	public int updatePartType(PartType partType);
+	// 修改子元素关系
+	public int updatePartTypeChildren(@Param("partTypes") List<PartType> partTypes);
 	// 通过Id删除产品分类
 	public int deletePartTypeById(Long id);
 }

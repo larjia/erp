@@ -1021,6 +1021,7 @@ create table md_part_type (
   number          varchar(25)	  default ''                 comment '编码',
   name            varchar(60)	  default ''                 comment '名称',
   parent_id       bigint(20)      default 0                  comment '父类别ID',
+  ancestors       varchar(255)    default ''                 comment '祖级列表',
   order_num       int(4)          default 0                  comment '显示顺序',
   create_by       varchar(64)     default ''                 comment '创建者',
   create_time 	  datetime                                   comment '创建时间',
@@ -1029,9 +1030,9 @@ create table md_part_type (
   primary key (id)
 ) engine=innodb auto_increment=200 comment = '产品类别表';
 
-insert into md_part_type values (1, 'TZS', '桶装水', 0, 1, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
-insert into md_part_type values (2, 'KT', '空桶', 0, 2, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
-insert into md_part_type values (3, 'CJS', '纯净水', 1, 1, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
-insert into md_part_type values (4, 'KQS', '矿泉水', 1, 2, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
-insert into md_part_type values (5, 'SQS', '山泉水', 1, 3, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_part_type values (1, 'TZS', '桶装水', 0, '0', 1, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_part_type values (2, 'KT', '空桶',    0, '0', 2, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_part_type values (3, 'CJS', '纯净水', 1, '0,1', 1, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_part_type values (4, 'KQS', '矿泉水', 1, '0,1', 2, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+insert into md_part_type values (5, 'SQS', '山泉水', 1, '0,1', 3, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
 

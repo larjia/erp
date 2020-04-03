@@ -57,6 +57,17 @@ public class PartTypeService implements IPartTypeService
 	@Override
 	public int updatePartType(PartType partType)
 	{
+		PartType newParentType = partTypeMapper.selectPartTypeById(partType.getParentId());
+		PartType oldType = partTypeMapper.selectPartTypeById(partType.getId());
+		
+		if (StringUtils.isNotNull(newParentType) && StringUtils.isNotNull(oldType))
+		{
+			String newAncestors = newParentType.getAncestors() + "," + newParentType.getId();
+			String oldAncestors = oldType.getAncestors();
+			partType.setAncestors(newAncestors);
+			updatePartTypeChildren(partType.getId(), newAncestors, oldAncestors);
+		}
+		
 		return partTypeMapper.updatePartType(partType);
 	}
 
@@ -64,6 +75,28 @@ public class PartTypeService implements IPartTypeService
 	public int deletePartTypeById(Long id)
 	{
 		return partTypeMapper.deletePartTypeById(id);
+	}
+	
+	/**
+	 * 修改子元素关系
+	 * 
+	 * @param id 被修改的产品类别Id
+	 * @param newAncestors 新的父级Id集合
+	 * @param oldAncestors 旧的父级Id集合
+	 */
+	public void updatePartTypeChildren(Long id, String newAncestors, String oldAncestors)
+	{
+		// selectChildrenTypeById可以查询出所有层级的子元素,不仅仅是下一层
+		// 见selectChildrenTypeById中的find_in_set函数
+		List<PartType> children = partTypeMapper.selectChildrenTypeById(id);
+		for (PartType child : children)
+		{
+			child.setAncestors(child.getAncestors().replace(oldAncestors, newAncestors));
+		}
+		if (children.size() > 0)
+		{
+			partTypeMapper.updatePartTypeChildren(children);
+		}
 	}
 
 }

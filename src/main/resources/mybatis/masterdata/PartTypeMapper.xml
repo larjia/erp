@@ -5,8 +5,9 @@
 	<resultMap type="PartType" id="PartTypeResult">
 		<id     property="id"     	  column="id"          />
 		<result property="parentId"   column="parent_id"   />
-		<result property="number"  	  column="number"   />
-		<result property="name"   	  column="name"   />
+		<result property="ancestors"  column="ancestors"   />
+		<result property="number"  	  column="number"      />
+		<result property="name"   	  column="name"        />
 		<result property="orderNum"   column="order_num"   />
 		<result property="createBy"   column="create_by"   />
 		<result property="createTime" column="create_time" />
@@ -15,7 +16,7 @@
 	</resultMap>
 	
 	<sql id="selectPartTypeVo">
-		select id, parent_id, number, name, order_num
+		select id, parent_id, ancestors, number, name, order_num
 		from md_part_type
 	</sql>
 	
@@ -43,6 +44,10 @@
 		where id = #{id}
 	</select>
 	
+	<select id="selectChildrenTypeById" parameterType="Long" resultMap="PartTypeResult">
+		select * from md_part_type where find_in_set(#{id}, ancestors)
+	</select>
+	
 	<select id="hasChildrenById" parameterType="Long" resultType="int">
 		select count(1) from md_part_type
 		where parent_id = #{id}
@@ -62,6 +67,7 @@
  		insert into md_part_type (
  			<if test="id != null and id != 0">id,</if>
  			<if test="parentId != null and parentId != 0">parent_id,</if>
+ 			<if test="ancestors != null and ancestors != ''">ancestors,</if>
  			<if test="number != null and number != ''">number,</if>
  			<if test="name != null and name != ''">name,</if>
  			<if test="orderNum != null and orderNum != ''">order_num,</if>
@@ -70,6 +76,7 @@
  		) values (
  			<if test="id != null and id != 0">#{id},</if>
  			<if test="parentId != null and parentId != 0">#{parentId},</if>
+ 			<if test="ancestors != null and ancestors != ''">#{ancestors},</if>
  			<if test="number != null and number != ''">#{number},</if>
  			<if test="name != null and name != ''">#{name},</if>
  			<if test="orderNum != null and orderNum != ''">#{orderNum},</if>
@@ -83,6 +90,7 @@
 		<set>
 			<if test="id != null and id != 0">id = #{id},</if>
 			<if test="parentId != null and parentId != 0">parent_id = #{parentId},</if>
+			<if test="ancestors != null and ancestors != ''">ancestors = #{ancestors},</if>
 			<if test="number != null and number != ''">number = #{number},</if>
 			<if test="name != null and name != ''">name = #{name},</if>
 			<if test="orderNum != null and orderNum != ''">order_num = #{orderNum},</if>
@@ -90,6 +98,17 @@
 			update_time = sysdate()
 		</set>
 		where id = #{id}
+	</update>
+	
+	<update id="updatePartTypeChildren" parameterType="java.util.List">
+		update md_part_type set ancestors =
+		<foreach collection="partTypes" item="item" index="index" separator=" " open="case id" close="end">
+			when #{item.id} then #{item.ancestors}
+		</foreach>
+		where id in
+		<foreach collection="partTypes" item="item" index="index" separator="," open="(" close=")">
+			#{item.id}
+		</foreach>
 	</update>
 	
 	<delete id="deletePartTypeById" parameterType="Long">
