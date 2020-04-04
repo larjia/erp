@@ -67,11 +67,31 @@ public class PartTypeController extends BaseController
 		{
 			return AjaxResult.error("修改产品分类'" + partType.getName() + "'失败, 编码已存在.");
 		}
-		else if (partType.getParentId().equals(partType.getId()))
+//		else if (partType.getParentId().equals(partType.getId()))
+//		{
+//			return AjaxResult.error("修改产品分类'" + partType.getName() + "'失败, 上级分类不能是自己.");
+//		}
+		
+		// 未选择上级分类
+		if (partType.getParentId() == null)
 		{
-			return AjaxResult.error("修改产品分类'" + partType.getName() + "'失败, 上级分类不能是自己");
+			partType.setParentId(0L);
 		}
-		//TODO 分类不能是自己所有层级的下级子类
+		else
+		{
+			// 父级分类不能是自己所有子层级中的某个分类
+			PartType parentType = partTypeService.selectPartTypeById(partType.getParentId());
+			String[] arr = parentType.getAncestors().split(",");
+			String id = partType.getId().toString();
+			for (String s : arr)
+			{
+				if (id.equals(s))
+				{
+					return AjaxResult.error("修改产品分类'" + partType.getName() + "'失败,上级分类不能是自己的子分类.");
+				}
+			}
+		}
+		
 		partType.setUpdateBy(SecurityUtils.getUserName());
 		return toAjax(partTypeService.updatePartType(partType));
 	}

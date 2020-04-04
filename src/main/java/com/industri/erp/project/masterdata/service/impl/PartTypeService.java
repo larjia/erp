@@ -40,7 +40,8 @@ public class PartTypeService implements IPartTypeService
 	public String checkPartTypeNumberUnique(PartType partType)
 	{
 		Long id = StringUtils.isNull(partType.getId()) ? -1L : partType.getId();
-		PartType info = partTypeMapper.checkPartTypeNumberUnique(partType.getNumber(), partType.getParentId());
+		Long parentId = (partType.getParentId() == null) ? 0L : partType.getParentId();
+		PartType info = partTypeMapper.checkPartTypeNumberUnique(partType.getNumber(), parentId);
 		if (StringUtils.isNotNull(info) && info.getId().longValue() != id.longValue())
 		{
 			return UserConstants.NOT_UNIQUE;
@@ -51,6 +52,16 @@ public class PartTypeService implements IPartTypeService
 	@Override
 	public int insertPartType(PartType partType)
 	{
+		PartType info = partTypeMapper.selectPartTypeById(partType.getParentId());
+		if (info == null)
+		{
+			partType.setAncestors("0");
+		}
+		else
+		{
+			partType.setAncestors(info.getAncestors() + "," + partType.getParentId());
+		}
+		
 		return partTypeMapper.insertPartType(partType);
 	}
 
