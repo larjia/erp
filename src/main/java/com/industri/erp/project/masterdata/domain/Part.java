@@ -15,7 +15,7 @@ public class Part extends BaseEntity
 	private Long id;
 	// 物料编码
 	private String number;
-	// 物料描述1
+	// 物料描述
 	private String desc;
 	// 物料描述2
 	private String desc2;
