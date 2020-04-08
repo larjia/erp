@@ -198,6 +198,7 @@ insert into sys_menu values('121',  '物料管理',   '4', '3', 'part',        '
 insert into sys_menu values('122',  '客户资料',   '4', '4', 'customer',    'masterdata/customer/index',     1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '客户资料菜单');
 insert into sys_menu values('123',  '供应商资料', '4', '5', 'supplier',     'masterdata/supplier/index',    1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '供应商资料菜单');
 insert into sys_menu values('124',  '送货员',    '4', '6', 'deliveryman',  'masterdata/deliveryman/index', 1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '送货员菜单');
+-- insert into sys_menu values('505',  '新增供应商', '4', '7', 'supplier',     'masterdata/supplier/addsupplier',    1, 'C', '1', '',                 'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '新增供应商资料');
 
 -- 库存管理菜单
 insert into sys_menu values('125',  '仓库管理', '5', '1', 'warehouse',  'inventory/warehouse/index',     1, 'C', '0', '',                       'build',          'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '仓库管理菜单');
@@ -1035,4 +1036,39 @@ insert into md_part_type values (2, 'KT', '空桶',    0, '0', 2, 'admin', '2020
 insert into md_part_type values (3, 'CJS', '纯净水', 1, '0,1', 1, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
 insert into md_part_type values (4, 'KQS', '矿泉水', 1, '0,1', 2, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
 insert into md_part_type values (5, 'SQS', '山泉水', 1, '0,1', 3, 'admin', '2020-03-15 23-19-00', 'admin', '2020-03-15 23-19-00');
+
+-- ----------------------------
+-- 27、供应商表字段
+-- ----------------------------
+drop table if exists md_supplier;
+create table md_supplier (
+  id          	  bigint(20)      not null auto_increment    comment 'id',
+  number          varchar(20)	  default ''                 comment '编码',
+  name            varchar(255)	  default ''                 comment '名称',
+  address         varchar(255)	  default ''                 comment '地址',
+  address2        varchar(255)	  default ''                 comment '地址2',
+  country         varchar(60)	  default ''                 comment '国家',
+  state           varchar(60)	  default ''                 comment '省份',
+  city            varchar(60)	  default ''                 comment '城市',
+  contact         varchar(50)	  default ''                 comment '联系人',
+  phone           varchar(20)	  default ''                 comment '电话',
+  email           varchar(50)	  default ''                 comment '邮箱',
+  fax             varchar(20)	  default ''                 comment '传真',
+  remark          varchar(255)	  default ''                 comment '备注',
+  taxable         char(1)	      default '0'                comment '应纳税 0应纳税 1非纳税',
+  taxin           char(1)	      default '0'                comment '含税 0不含税 1含税',
+  taxRate         decimal(19,5)	  default 13                 comment '税率',
+  bank            varchar(120)	  default ''                 comment '开户银行',
+  bankAcct        varchar(20)	  default ''                 comment '银行账户',
+  taxIdNbr        varchar(20)	  default ''                 comment '纳税人识别号',
+  acctPayable     varchar(20)	  default ''                 comment '应付账户',
+  amtPayable      decimal(19,5)	  default 0                  comment '应付账款',
+  amtPrePayment   decimal(19,5)	  default 0                  comment '预付账款',
+  type            varchar(100)	  default ''                 comment '类别',
+  create_by       varchar(64)     default ''                 comment '创建者',
+  create_time 	  datetime                                   comment '创建时间',
+  update_by       varchar(64)     default ''                 comment '更新者',
+  update_time     datetime                                   comment '更新时间',
+  primary key (id)
+) engine=innodb auto_increment=200 comment = '供应商表';
 
