@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.industri.erp.project.masterdata.mapper.SupplierMapper">
+
+	<resultMap type="Supplier" id="SupplierResult">
+		<id		property="id"				column="id"			    />
+		<result property="number"			column="number"		    />
+		<result property="name"			    column="name"		    />
+		<result property="address"			column="address"		/>
+		<result property="address2"			column="address2"		/>
+		<result property="country"			column="country"		/>
+		<result property="state"			column="state"		    />
+		<result property="city"			    column="city"			/>
+		<result property="contact"			column="contact"		/>
+		<result property="phone"			column="phone"			/>
+		<result property="email"			column="email"			/>
+		<result property="fax"			    column="fax"			/>
+		<result property="remark"			column="remark"			/>
+		<result property="taxable"			column="taxable"		/>
+		<result property="taxin"			column="taxin"			/>
+		<result property="taxRate"			column="tax_rate"		/>
+		<result property="bank"			    column="bank"			/>
+		<result property="bankAcct"			column="bank_acct"		/>
+		<result property="taxIdNbr"			column="tax_id_nbr"		/>
+		<result property="acctPayable"		column="acct_payable"	/>
+		<result property="amtPayable"		column="amt_payable"	/>
+		<result property="amtPrePayment"	column="amt_pre_payment"	/>
+		<result property="type"				column="type"			/>
+		<result property="createBy"			column="create_by"		/>
+		<result property="createTime"		column="create_time"	/>
+		<result property="updateBy"			column="update_by"		/>
+		<result property="updateTime"		column="update_time"	/>
+	</resultMap>
+
+	<sql id="selectSupplierVo">
+		select id, number, name, address, address2, country, state, city, contact, phone, email, fax, remark, taxable, taxin,
+		tax_rate, bank, bank_acct, tax_id_nbr, acct_payable, amt_payable, amt_pre_payment, type, create_by, create_time, update_by,
+		update_time from md_supplier
+	</sql>
+	
+	<select id = "selectSupplierList" parameterType="Supplier" resultMap="SupplierResult">
+		<include refid="selectSupplierVo" />
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="number != null and number != ''">
+				and number like concat('%', #{number}, '%')
+			</if>
+			<if test="name != null and name != ''">
+				and name like concat('%', #{name}, '%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectSupplierById" parameterType="Long" resultMap="SupplierResult">
+		<include refid="selectSupplierVo" />
+		where id = #{id}
+	</select>
+	
+	<select id="checkSupplierNumberUnique" resultMap="SupplierResult">
+		<include refid="selectSupplierVo" />
+		where id = #{id}
+	</select>
+	
+	<insert id="insertSupplier" parameterType="Supplier" useGeneratedKeys="true" keyProperty="id">
+		insert into md_supplier (
+			<if test="id != null and id != 0">id,</if>
+			<if test="number != null and number != ''">number,</if>
+			<if test="name != null and name != ''">name,</if>
+			<if test="address != null and address != ''">address,</if>
+			<if test="address2 != null and address2 != ''">address2,</if>
+			<if test="country != null and country != ''">country,</if>
+			<if test="state != null and state != ''">state,</if>
+			<if test="city != null and city != ''">city,</if>
+			<if test="contact != null and contact != ''">contact,</if>
+			<if test="phone != null and phone != ''">phone,</if>
+			<if test="email != null and email != ''">email,</if>
+			<if test="fax != null and fax != ''">fax,</if>
+			<if test="remark != null and remark != ''">remark,</if>
+			<if test="taxable != null and taxable != ''">taxable,</if>
+			<if test="taxin != null and taxin != ''">taxin,</if>
+			<if test="taxRate != null and taxRate != ''">tax_rate,</if>
+			<if test="bank != null and bank != ''">bank,</if>
+			<if test="bankAcct != null and bankAcct != ''">bank_acct,</if>
+			<if test="taxIdNbr != null and taxIdNbr != ''">tax_id_nbr,</if>
+			<if test="acctPayable != null and acctPayable != ''">acct_payable,</if>
+			<if test="amtPayable != null and amtPayable != ''">amt_payable,</if>
+			<if test="amtPrePayment != null and amtPrePayment != ''">amt_pre_payment,</if>
+			<if test="type != null and type != ''">type,</if>
+			<if test="createBy != null and createBy != ''">create_by,</if>
+			create_time
+		) values (
+			<if test="id != null and id != 0">#{id},</if>
+			<if test="number != null and number != ''">#{number},</if>
+			<if test="name != null and name != ''">#{name},</if>
+			<if test="address != null and address != ''">#{address},</if>
+			<if test="address2 != null and address2 != ''">#{address2},</if>
+			<if test="country != null and country != ''">#{country},</if>
+			<if test="state != null and state != ''">#{state},</if>
+			<if test="city != null and city != ''">#{city},</if>
+			<if test="contact != null and contact != ''">#{contact},</if>
+			<if test="phone != null and phone != ''">#{phone},</if>
+			<if test="email != null and email != ''">#{email},</if>
+			<if test="fax != null and fax != ''">#{fax},</if>
+			<if test="remark != null and remark != ''">#{remark},</if>
+			<if test="taxable != null and taxable != ''">#{taxable},</if>
+			<if test="taxin != null and taxin != ''">#{taxin},</if>
+			<if test="taxRate != null and taxRate != ''">#{taxRate},</if>
+			<if test="bank != null and bank != ''">#{bank},</if>
+			<if test="bankAcct != null and bankAcct != ''">#{bankAcct},</if>
+			<if test="taxIdNbr != null and taxIdNbr != ''">#{taxIdNbr},</if>
+			<if test="acctPayable != null and acctPayable != ''">#{acctPayable},</if>
+			<if test="amtPayable != null and amtPayable != ''">#{amtPayable},</if>
+			<if test="amtPrePayment != null and amtPrePayment != ''">#{amtPrePayment},</if>
+			<if test="type != null and type != ''">#{type},</if>
+			<if test="createBy != null and createBy != ''">#{createBy},</if>
+			sysdate()
+		)
+	</insert>
+	
+	<update id="updateSupplier" parameterType="Supplier">
+		udpate md_supplier
+		<set>
+			<if test="id != null and id != 0">id = #{id},</if>
+			<if test="number != null and number != ''">number = #{number},</if>
+			<if test="name != null and name != ''">name = #{name},</if>
+			<if test="address != null and address != ''">address = #{address},</if>
+			<if test="address2 != null and address2 != ''">address2 = #{address2},</if>
+			<if test="country != null and country != ''">country = #{country},</if>
+			<if test="state != null and state != ''">state = #{state},</if>
+			<if test="city != null and city != ''">city = #{city},</if>
+			<if test="contact != null and contact != ''">contact = #{contact},</if>
+			<if test="phone != null and phone != ''">phone = #{phone},</if>
+			<if test="email != null and email != ''">email = #{email},</if>
+			<if test="fax != null and fax != ''">fax = #{fax},</if>
+			<if test="remark != null and remark != ''">remark = #{remark},</if>
+			<if test="taxable != null and taxable != ''">taxable = #{taxable},</if>
+			<if test="taxin != null and taxin != ''">taxin = #{taxin},</if>
+			<if test="taxRate != null and taxRate != ''">tax_rate = #{taxRate},</if>
+			<if test="bank != null and bank != ''">bank = #{bank},</if>
+			<if test="bankAcct != null and bankAcct != ''">bank_acct = #{bankAcct},</if>
+			<if test="taxInNbr != null and taxInNbr != ''">tax_in_nbr = #{taxInNbr},</if>
+			<if test="acctPayable != null and acctPayable != ''">acct_payable = #{acctPayable},</if>
+			<if test="amtPayable != null and amtPayable != ''">amt_payable = #{amtPayable},</if>
+			<if test="amtPrePayment != null and amtPrePayment != ''">amt_pre_payment = #{amtPrePayment},</if>
+			<if test="type != null and type != ''">type = #{type},</if>
+			<if test="createBy != null and createBy != ''">create_by = #{createBy},</if>
+			update_time = sysdate()
+		</set>
+	</update>
+	
+	<delete id="deleteSupplierById" parameterType="Long">
+		delete from md_supplier where id = #{id}
+	</delete>
+	
+	<delete id="deleteSupplierByNumber" parameterType="String">
+		delete from md_supplier where number = #{number}
+	</delete>
+</mapper>
