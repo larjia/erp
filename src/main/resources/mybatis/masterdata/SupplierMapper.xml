@@ -51,6 +51,7 @@
 				and name like concat('%', #{name}, '%')
 			</if>
 		</where>
+		order by id desc
 	</select>
 	
 	<select id="selectSupplierById" parameterType="Long" resultMap="SupplierResult">
@@ -60,7 +61,7 @@
 	
 	<select id="checkSupplierNumberUnique" resultMap="SupplierResult">
 		<include refid="selectSupplierVo" />
-		where id = #{id}
+		where number = #{number}
 	</select>
 	
 	<insert id="insertSupplier" parameterType="Supplier" useGeneratedKeys="true" keyProperty="id">
@@ -120,7 +121,7 @@
 	</insert>
 	
 	<update id="updateSupplier" parameterType="Supplier">
-		udpate md_supplier
+		update md_supplier
 		<set>
 			<if test="id != null and id != 0">id = #{id},</if>
 			<if test="number != null and number != ''">number = #{number},</if>
@@ -137,17 +138,18 @@
 			<if test="remark != null and remark != ''">remark = #{remark},</if>
 			<if test="taxable != null and taxable != ''">taxable = #{taxable},</if>
 			<if test="taxin != null and taxin != ''">taxin = #{taxin},</if>
-			<if test="taxRate != null and taxRate != ''">tax_rate = #{taxRate},</if>
+			<if test="taxRate != null">tax_rate = #{taxRate},</if>
 			<if test="bank != null and bank != ''">bank = #{bank},</if>
 			<if test="bankAcct != null and bankAcct != ''">bank_acct = #{bankAcct},</if>
-			<if test="taxInNbr != null and taxInNbr != ''">tax_in_nbr = #{taxInNbr},</if>
+			<if test="taxIdNbr != null and taxIdNbr != ''">tax_id_nbr = #{taxIdNbr},</if>
 			<if test="acctPayable != null and acctPayable != ''">acct_payable = #{acctPayable},</if>
-			<if test="amtPayable != null and amtPayable != ''">amt_payable = #{amtPayable},</if>
-			<if test="amtPrePayment != null and amtPrePayment != ''">amt_pre_payment = #{amtPrePayment},</if>
+			<if test="amtPayable != null">amt_payable = #{amtPayable},</if>
+			<if test="amtPrePayment != null">amt_pre_payment = #{amtPrePayment},</if>
 			<if test="type != null and type != ''">type = #{type},</if>
 			<if test="createBy != null and createBy != ''">create_by = #{createBy},</if>
 			update_time = sysdate()
 		</set>
+		where id = #{id}
 	</update>
 	
 	<delete id="deleteSupplierById" parameterType="Long">
