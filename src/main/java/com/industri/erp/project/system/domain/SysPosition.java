@@ -18,7 +18,7 @@ public class SysPosition extends BaseEntity
 	private static final long serialVersionUID = 1L;
 	
 	// 岗位序号
-	private long positionId;
+	private Long positionId;
 	// 岗位编码
 	private String positionCode;
 	// 岗位名称
@@ -30,12 +30,12 @@ public class SysPosition extends BaseEntity
 	// 用户是否存在此岗位标识 默认不存在
 	private boolean flag = false;
 	
-	public long getPositionId()
+	public Long getPositionId()
 	{
 		return positionId;
 	}
 	
-	public void setPositionId(long positionId)
+	public void setPositionId(Long positionId)
 	{
 		this.positionId = positionId;
 	}
