@@ -37,10 +37,16 @@ create table sys_dept (
 -- insert into sys_dept values(110,  100, '0,100',      '高压车间',   1, '若依', '15888888888', 'ry@qq.com', '0', '0', '1', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00');
 -- insert into sys_dept values(111,  100, '0,100',      '低压车间',   2, '若依', '15888888888', 'ry@qq.com', '0', '0', '1', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00');
 -- insert into sys_dept values(112,  100, '0,100',      '五金车间',   3, '若依', '15888888888', 'ry@qq.com', '0', '0', '1', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00');
-insert into sys_dept values(100,  0,   '0',          'SWL',   0, 'admin', '15888888888', 'ry@qq.com', '0', '0', '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00');
+insert into sys_dept values(100,  0,   '0',          '光耀精技',   0, 'admin', '15888888888', 'ry@qq.com', '0', '0', '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00');
 insert into sys_dept values(101,  100, '0,100',      '高压车间', 1, 'admin', '15888888888', 'ry@qq.com', '0', '0', '1', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00');
 insert into sys_dept values(102,  100, '0,100',      '低压车间', 2, 'admin', '15888888888', 'ry@qq.com', '0', '0', '1', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00');
 insert into sys_dept values(103,  100, '0,100',      '五金车间', 3, 'admin', '15888888888', 'ry@qq.com', '0', '0', '1', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00');
+insert into sys_dept values(104,  100, '0,100',      '技术部', 4, 'admin', '15888888888', 'ry@qq.com', '0', '0', '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00');
+insert into sys_dept values(105,  100, '0,100',      '销售部', 5, 'admin', '15888888888', 'ry@qq.com', '0', '0', '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00');
+insert into sys_dept values(106,  100, '0,100',      '采购部', 6, 'admin', '15888888888', 'ry@qq.com', '0', '0', '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00');
+insert into sys_dept values(107,  100, '0,100',      '物流部', 7, 'admin', '15888888888', 'ry@qq.com', '0', '0', '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00');
+insert into sys_dept values(108,  100, '0,100',      '财务部', 8, 'admin', '15888888888', 'ry@qq.com', '0', '0', '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00');
+insert into sys_dept values(109,  100, '0,100',      '人事部', 9, 'admin', '15888888888', 'ry@qq.com', '0', '0', '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00');
 
 -- ----------------------------
 -- 2、用户信息表
@@ -54,7 +60,7 @@ create table sys_user (
   user_type         varchar(2)      default '00'               comment '用户类型（00系统用户）',
   email             varchar(50)     default ''                 comment '用户邮箱',
   phone_number      varchar(11)     default ''                 comment '手机号码',
-  sex               char(1)         default '0'                comment '用户性别（0男 1女 2未知）',
+  gender            char(1)         default '0'                comment '用户性别（0男 1女 2未知）',
   avatar            varchar(100)    default ''                 comment '头像地址',
   password          varchar(100)    default ''                 comment '密码',
   status            char(1)         default '0'                comment '帐号状态（0正常 1停用）',
