@@ -57,7 +57,7 @@ public class SysConfigController extends BaseController
 	/**
 	 * 根据参数编号获取详细信息
 	 */
-	@PreAuthorize("@ss.hasPermi('system:config:query")
+	@PreAuthorize("@ss.hasPermi('system:config:query')")
 	@GetMapping(value = "/{configId}")
 	public AjaxResult getInfo(@PathVariable Long configId)
 	{
