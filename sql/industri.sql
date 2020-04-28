@@ -85,29 +85,29 @@ insert into sys_user values(2,  105, 'ry',    '若依', '00', 'ry@qq.com',  '156
 -- ----------------------------
 -- 3、岗位信息表
 -- ----------------------------
-drop table if exists sys_post;
-create table sys_post
+drop table if exists sys_position;
+create table sys_position
 (
-  post_id       bigint(20)      not null auto_increment    comment '岗位ID',
-  post_code     varchar(64)     not null                   comment '岗位编码',
-  post_name     varchar(50)     not null                   comment '岗位名称',
-  post_sort     int(4)          not null                   comment '显示顺序',
+  position_id       bigint(20)      not null auto_increment    comment '岗位ID',
+  position_code     varchar(64)     not null                   comment '岗位编码',
+  position_name     varchar(50)     not null                   comment '岗位名称',
+  position_sort     int(4)          not null                   comment '显示顺序',
   status        char(1)         not null                   comment '状态（0正常 1停用）',
   create_by     varchar(64)     default ''                 comment '创建者',
   create_time   datetime                                   comment '创建时间',
   update_by     varchar(64)     default ''			       comment '更新者',
   update_time   datetime                                   comment '更新时间',
   remark        varchar(500)    default null               comment '备注',
-  primary key (post_id)
+  primary key (position_id)
 ) engine=innodb comment = '岗位信息表';
 
 -- ----------------------------
 -- 初始化-岗位信息表数据
 -- ----------------------------
-insert into sys_post values(1, 'ceo',  '董事长',    1, '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '');
-insert into sys_post values(2, 'se',   '项目经理',  2, '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '');
-insert into sys_post values(3, 'hr',   '人力资源',  3, '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '');
-insert into sys_post values(4, 'user', '普通员工',  4, '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '');
+insert into sys_position values(1, 'ceo',  '董事长',    1, '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '');
+insert into sys_position values(2, 'se',   '项目经理',  2, '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '');
+insert into sys_position values(3, 'hr',   '人力资源',  3, '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '');
+insert into sys_position values(4, 'user', '普通员工',  4, '0', 'admin', '2018-03-16 11-33-00', 'ry', '2018-03-16 11-33-00', '');
 
 
 -- ----------------------------
@@ -455,19 +455,19 @@ insert into sys_role_dept values ('2', '103');
 -- ----------------------------
 -- 9、用户与岗位关联表  用户1-N岗位
 -- ----------------------------
-drop table if exists sys_user_post;
-create table sys_user_post
+drop table if exists sys_user_position;
+create table sys_user_position
 (
-  user_id   bigint(20) not null comment '用户ID',
-  post_id   bigint(20) not null comment '岗位ID',
-  primary key (user_id, post_id)
+  user_id   	bigint(20) not null comment '用户ID',
+  position_id   bigint(20) not null comment '岗位ID',
+  primary key (user_id, position_id)
 ) engine=innodb comment = '用户与岗位关联表';
 
 -- ----------------------------
 -- 初始化-用户与岗位关联表数据
 -- ----------------------------
-insert into sys_user_post values ('1', '1');
-insert into sys_user_post values ('2', '2');
+insert into sys_user_position values ('1', '1');
+insert into sys_user_position values ('2', '2');
 
 
 -- ----------------------------
