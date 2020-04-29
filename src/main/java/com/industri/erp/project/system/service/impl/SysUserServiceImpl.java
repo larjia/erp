@@ -190,7 +190,7 @@ public class SysUserServiceImpl implements ISysUserService
 		// 新增用户岗位关联
 		insertUserPosition(user);
 		// 新增用户与角色管理
-		insertUserPosition(user);
+		insertUserRole(user);
 		return rows;
 	}
 	
