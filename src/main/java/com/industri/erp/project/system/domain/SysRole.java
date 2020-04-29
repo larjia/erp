@@ -19,7 +19,7 @@ public class SysRole extends BaseEntity
 	private Long roleId;
 	// 角色名称
 	private String roleName;
-	// 角色权限
+	// 角色权限 (代码或者标记)
 	private String roleKey;
 	// 角色排序
 	private String roleSort;
